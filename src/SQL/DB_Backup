@@ -1,0 +1,107 @@
+create database CR7_Florian default character set utf8;
+
+create table Students(
+    Id_Students int Auto_increment, Primary key( Id_Students),
+    firstName varchar(50),
+    lastName varchar(50),
+    email varchar(50)
+);
+
+create table Teachers(
+    Id_Teachers int Auto_increment, Primary key( Id_Teachers),
+    firstName varchar(50),
+    lastName varchar(50),
+    email varchar(50)
+);
+
+create table Classes(
+    Id_Classes int Auto_increment, Primary key( Id_Classes),
+    name varchar(50)
+);
+
+create table ClassPlan(
+    fk_student int,
+    fk_class int,
+    foreign key( fk_student) references Students(Id_Students) on delete cascade,
+    foreign key(fk_class) references Classes(Id_Classes) on delete cascade
+);
+
+create table TeacherPlan(
+    fk_class int,
+    fk_teacher int,
+    foreign key( fk_teacher) references Teachers(Id_Teachers) on delete cascade,
+    foreign key(fk_class) references Classes(Id_Classes) on delete cascade
+);
+
+insert into Teachers (firstName, lastName, email)
+    values
+        ("Ivan","Katschuk", "katschuk@gmx.at"),
+        ("Karl", "Seitz", "seitz@gmx.at"),
+        ("Herman", "Hinterstuber", "hinterstuber@gmx.at"),
+        ("Thomas", "Brezina", "brezina@gmx.at"),
+        ("Tiberius", "Kirk", "kirk@gmx.at");
+
+
+insert into Students ( firstName, lastName, email)
+    values
+        ("Sofia", "Gracia", "gracia@gmx.at"),
+        ("Alejandro", "Lopez", "lopez@gmx.at"),
+        ("Victoria", "Miguel", "miguel@gmx.at"),
+        ("Santiago", "Sanchez", "sany@gmail.com"),
+        ("Miguel", "Hernandez", "hernandez@gmx.at"),
+        ("Maria", "Flores", "flores@gmx.at"),
+        ("Ximena", "Perez", "perez@gmx.at"),
+        ("Guadalupe", "Martinez", "marti@gmx.at"),
+        ("Wasilisa", "Iwanov", "iwi@gmx.at"),
+        ("Artijom", "Sokolow", "sokol@gmx.at"),
+        ("Iwan", "Petrow", "petrow@gmx.at"),
+        ("Michail", "Kozlow", "kotzi@gmx.at");
+
+
+insert into Classes( name)
+    values
+        ("1a"),
+        ("2a"),
+        ("3a"),
+        ("1b"),
+        ("2b");
+
+
+
+insert into ClassPlan( fk_class, fk_student)
+    values
+        (1,1),
+        (1,2),
+        (2,3),
+        (2,4),
+        (4,5),
+        (4,6),
+        (5,7),
+        (5,8),
+        (3,9),
+        (3,10),
+        (3,11),
+        (3,12);
+
+
+
+insert into TeacherPlan ( fk_class, fk_teacher)
+    values
+        (1,1),
+        (2,1),
+        (3,1),
+        (4,2),
+        (5,2),
+        (3,3),
+        (1,4),
+        (2,4),
+        (4,5),
+        (5,5);
+
+
+select Students.firstName, Students.lastName, Students.email, Classes.name
+from ClassPlan
+inner join Students
+on ClassPlan.fk_student = Students.Id_Students
+inner join Classes
+on ClassPlan.fk_class = Classes.Id_Classes where Id_Classes like 1;

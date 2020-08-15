@@ -1,0 +1,23 @@
+
+Report all Students with Class ID;
+
+select Students.firstName, Students.lastName, Students.email, Classes.name
+from ClassPlan
+inner join Students
+on ClassPlan.fk_student = Students.Id_Students
+inner join Classes
+on ClassPlan.fk_class = Classes.Id_Classes where Id_Classes like 1;
+
+
+Reports all Students with Class name;
+
+
+select Students.firstName, Students.lastName, Students.email, Classes.name
+from ClassPlan
+inner join Students
+on ClassPlan.fk_student = Students.Id_Students
+inner join Classes
+on ClassPlan.fk_class = Classes.Id_Classes where Classes.name like "1a";
+
+
+
