@@ -1,9 +1,9 @@
 public class Teacher {
 
-    int idTeacher;
-    String firstName;
-    String lastName;
-    String email;
+    private int idTeacher;
+    private String firstName;
+    private String lastName;
+    private String email;
 
 
     Teacher(int id, String first, String last, String email){

@@ -105,3 +105,12 @@ inner join Students
 on ClassPlan.fk_student = Students.Id_Students
 inner join Classes
 on ClassPlan.fk_class = Classes.Id_Classes where Id_Classes like 1;
+
+
+
+select Classes.name, Teachers.firstName, Teachers.lastName
+from teacherPlan
+inner join Teachers
+on teacherPlan.fk_teacher = Teachers.Id_Teachers
+inner join Classes
+on teacherPlan.fk_class = Classes.Id_Classes where Teachers.Id_Teachers like 1;
